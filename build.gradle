@@ -1,0 +1,47 @@
+
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.12.0'
+}
+
+repositories {
+    jcenter() 
+}
+
+
+version = '0.1.0'
+group = 'net.oc_soft'
+
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+gradlePlugin {
+    plugins {
+        msgfmt {
+            id = 'net.oc_soft.msgfmt'
+            implementationClass = 'net.oc_soft.MsgFmtPlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/oc-soft/gradle-msgfmt'
+    vcsUrl = 'https://github.com/oc-soft/gradle-msgfmt.git'
+    displayName = 'Msgfmt for gradle'
+    description = 'A gradle plugin to generate message object for gettext.'
+    tags = ['gettext', 'msgfmt', 'i18n', 'internationalization' ]
+}
+
+
+// vi: se ts=4 sw=4 et:
